@@ -189,6 +189,6 @@ def calculate_metric_values(test_y, pred_y):
 
 # Select best model
 
-data = {'Approaches | Evaluation Metrics':['XGBoost', 'LightGBM', 'CatBoost', 'SVM', 'KNN'],'Mean Absolute Error':[mae_1 ,mae_2, mae_3 , '-', '-'], 'Mean Sqaured Error':[mse_1 ,mse_2, mse_3, '-', '-' ],'Mean Absolute Percentage Error':[mape_1 ,mape_2, mape_3, '-', '-' ], 'R2 Score':[r2_1 ,r2_2, r2_3, '-', '-' ], 'Accuracy Score':[ascore_1 ,ascore_2, ascore_3, '-', '-' ]}
+data = {'Approaches | Evaluation Metrics':['XGBoost', 'LightGBM', 'CatBoost', 'SVM', 'KNN'],'Mean Absolute Error':[mae_1 ,mae_2, mae_3 , mae_4, mae_5], 'Mean Sqaured Error':[mse_1 ,mse_2, mse_3, mse_4, mse_5 ],'Mean Absolute Percentage Error':[mape_1 ,mape_2, mape_3, mape_4, mape_5 ], 'R2 Score':[r2_1 ,r2_2, r2_3, r2_4, r2_5 ], 'Accuracy Score':[ascore_1 ,ascore_2, ascore_3, ascore_4, ascore_5 ]}
 df_1 = pd.DataFrame(data=data)
 df_1
