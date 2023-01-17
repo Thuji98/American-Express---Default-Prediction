@@ -73,20 +73,11 @@ test_df = test_df.groupby('customer_ID').tail(1)
 train_df.reset_index(inplace=True)
 test_df.reset_index(inplace=True)
 
+# 2 . Categorical encoding
 
-# 2 . Scaling
-
-scaler = StandardScaler()
-train_X = scaler.fit_transform(train_X)
-test_X = scaler.transform(test_X)
-
-# 3 . Categorical encoding
-
-ordinal_encoder = OrdinalEncoder()
-categorical_columns.remove('D_66')
-
-train_df[categorical_columns] = ordinal_encoder.fit_transform(train_df[categorical_columns])
-test_df[categorical_columns] = ordinal_encoder.transform(test_df[categorical_columns])
+for col in categorical_columns:
+    train_df[col]=train_df[col].astype('int').astype('str')
+    test_df[col]=test_df[col].astype('int').astype('str')
 
 train_df = train_df.merge(train_labels, how='inner', on="customer_ID")
 
@@ -97,12 +88,21 @@ test_df = test_df.drop(['index','customer_ID', 'S_2'], axis=1)
 train_df = pd.get_dummies(train_df, columns=categorical_columns, drop_first=True)
 test_df = pd.get_dummies(test_df, columns=categorical_columns, drop_first=True)
 
+
 X = train_df.drop('target', axis=1)
 y = train_df['target']
+
+# 3 . Scaling
+
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+test_df = scaler.transform(test_df)
 
 # Train Test Split
 
 train_X, test_X , train_y , test_y = train_test_split(X,y,test_size=0.25,random_state=42)
+
+
 
 
 # Modeling machine learning approaches
